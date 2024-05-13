@@ -1,8 +1,14 @@
 import { Router } from "express";
-import { PokedexController } from "../controllers/pokedexController";
+import PokedexController from "../controllers/pokedexController";
+import multer from "multer";
+const upload = multer({ dest: "uploads/" });
 
 const router = Router();
 
-router.get("/pokedex/pokemon/search", new PokedexController().handle);
+router.post(
+  "/pokedex/pokemon/search",
+  upload.single("image"),
+  PokedexController.handle
+);
 
 export { router };
