@@ -3,7 +3,6 @@ import fs from "fs";
 
 class GeminiService {
   getModelClient = () => {
-    console.log(process.env.API_KEY);
     const genAI = new GoogleGenerativeAI(process.env.API_KEY || "");
     return genAI.getGenerativeModel({ model: "gemini-pro-vision" });
   };
@@ -33,7 +32,6 @@ class GeminiService {
     let text = response.text();
     text = text.replace("```json\n", "");
     text = text.replace("```", "");
-    console.log(text);
     const pokemon: IOutputDto = JSON.parse(text);
 
     return pokemon;
