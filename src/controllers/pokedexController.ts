@@ -6,13 +6,13 @@ class PokedexController {
     try {
       const file: Express.Multer.File | undefined = request.file;
 
-      if (!file) return response.status(400).send("Nenhum arquivo enviado.");
+      if (!file) return response.status(400).send("No file sended");
 
       const result = await GeminiService.getPokemon(file);
 
       response.json(result);
     } catch (error) {
-      console.error("Erro ao processar upload:", error);
+      console.error("Failed on process file upload", error);
       response.status(500).send("Erro interno ao processar upload.");
     }
   }
